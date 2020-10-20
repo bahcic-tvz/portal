@@ -55,6 +55,9 @@ class CacheConfiguration(
             createCache(cm, com.tvz.portal.domain.User::class.java.name)
             createCache(cm, com.tvz.portal.domain.Authority::class.java.name)
             createCache(cm, com.tvz.portal.domain.User::class.java.name + ".authorities")
+            createCache(cm, com.tvz.portal.domain.Article::class.java.name)
+            createCache(cm, com.tvz.portal.domain.Article::class.java.name + ".comments")
+            createCache(cm, com.tvz.portal.domain.Comment::class.java.name)
             // jhipster-needle-ehcache-add-entry
         }
     }

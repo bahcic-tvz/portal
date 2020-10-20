@@ -1,0 +1,76 @@
+{
+  "name": "Article",
+  "fields": [
+    {
+      "fieldName": "category",
+      "fieldType": "Category",
+      "fieldValues": "NEWS,SHOW,SPORT,LIFESTYLE,TECH,VIRAL,VIDEO,SPONSORED"
+    },
+    {
+      "fieldName": "posted",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tag",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "summary",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photoURL",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photoAuthor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "poweredBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "poweredByURL",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isHero",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "comment",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "comments"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "author",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201020181336",
+  "entityTableName": "article",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

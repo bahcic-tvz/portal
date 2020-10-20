@@ -1,0 +1,40 @@
+enum Category {
+	NEWS,
+	SHOW,
+	SPORT,
+	LIFESTYLE,
+	TECH,
+	VIRAL,
+	VIDEO,
+    SPONSORED
+}
+
+entity Article {
+	category Category
+    posted Instant
+    title String
+    tag String
+	summary String
+    photoURL String
+    photoAuthor String
+    poweredBy String
+    poweredByURL String
+    content String
+    isHero Boolean
+}
+
+entity Comment {
+    posted Instant
+    content String
+}
+
+relationship ManyToOne {
+	Article{author} to User
+    Comment{author} to User
+}
+
+relationship OneToMany {
+    Article{comments(content)} to Comment{article(title)}
+}
+
+paginate all with pagination
