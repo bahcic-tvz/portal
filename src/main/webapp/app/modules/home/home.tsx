@@ -15,7 +15,7 @@ export const Home = (props: IHomeProp) => {
 
   return (
     <Row>
-      <Col md="9">
+      <Col md={{size: 8, offset: 2}} >
         <h2>Welcome, Java Hipster!</h2>
         <p className="lead">This is your homepage</p>
         {account && account.login ? (
@@ -80,9 +80,6 @@ export const Home = (props: IHomeProp) => {
           </a>
           !
         </p>
-      </Col>
-      <Col md="3" className="pad">
-        <span className="hipster rounded" />
       </Col>
     </Row>
   );
