@@ -61,19 +61,26 @@ const Header = (props: IHeaderProps) => {
           <Navbar expand="sm" style={{border: 'none'}}>
             <Button onClick={toggleMenu} color={'white'}>{menuOpen ? '-' : '+'}</Button>
             <Brand />
-            {categories.map(category => (
-              <Category
-                category={category}
-                color={categoryEnum[category]}
-                path={path}
-              />
-            ))}
             <Collapse isOpen={menuOpen} navbar>
-              <Nav id="header-tabs" className="ml-auto" navbar>
-                {/*<Home />*/}
-                {props.isAuthenticated && props.isAdmin && <EntitiesMenu />}
-                {props.isAuthenticated && props.isAdmin && <AdminMenu showSwagger={props.isSwaggerEnabled} />}
-                <AccountMenu isAuthenticated={props.isAuthenticated} />
+              <Nav id="header-tabs" className="mr-auto" navbar>
+                {categories.map(category => (
+                  <div onClick={() => setMenuOpen(false)}>
+                    <Category
+                      category={category}
+                      color={categoryEnum[category]}
+                      path={path}
+                    />
+                  </div>
+                ))}
+                <div style={{
+                  paddingTop: '5px',
+                  marginLeft: '20px'
+                }}>
+                  {/*<Home />*/}
+                  {props.isAuthenticated && props.isAdmin && <EntitiesMenu />}
+                  {props.isAuthenticated && props.isAdmin && <AdminMenu showSwagger={props.isSwaggerEnabled} />}
+                  <AccountMenu isAuthenticated={props.isAuthenticated} />
+                </div>
               </Nav>
             </Collapse>
           </Navbar>
