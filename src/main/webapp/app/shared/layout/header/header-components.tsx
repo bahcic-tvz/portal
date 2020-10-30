@@ -29,16 +29,28 @@ export const Home = props => (
   </NavItem>
 );
 
-export const Category = ({ category })  => (
-  <NavItem
-    style={{
-      listStyleType: 'none',
-      textTransform: 'uppercase',
-      color: 'black'
-    }}
-  >
-    <NavLink tag={Link} to={`/category/${category}`} className="d-flex align-items-center">
-      <span>{category}</span>
-    </NavLink>
-  </NavItem>
-)
+export const Category = ({ category, color, path })  => {
+  const active = path === `/category/${category}`
+  return (
+    <NavItem
+      style={{
+        listStyleType: 'none',
+        textTransform: 'uppercase',
+        borderBottom: `4px solid ${color}`,
+        backgroundColor: active ? `${color}1A` : 'transparent'
+      }}
+    >
+      <NavLink
+        tag={Link}
+        to={`/category/${category}`}
+        className="d-flex align-items-center"
+        style={{
+          padding: '11px 16px',
+          color: active ? color : 'black',
+        }}
+      >
+        <span>{category}</span>
+      </NavLink>
+    </NavItem>
+  )
+}

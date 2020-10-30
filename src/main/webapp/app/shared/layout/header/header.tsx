@@ -6,6 +6,7 @@ import { Navbar, Nav, Button, Collapse, Row, Col } from 'reactstrap';
 import LoadingBar from 'react-redux-loading-bar';
 import { Brand, Category } from './header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu } from '../menus';
+import { useLocation } from 'react-router-dom';
 
 export interface IHeaderProps {
   isAuthenticated: boolean;
@@ -17,6 +18,7 @@ export interface IHeaderProps {
 
 const Header = (props: IHeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname: path } = useLocation()
 
   const renderDevRibbon = () =>
     props.isInProduction === false ? (
@@ -32,10 +34,21 @@ const Header = (props: IHeaderProps) => {
     'sport',
     'lifestyle',
     'tech',
-    'trial',
+    'viral',
     'video',
     'sponsored'
   ]
+
+  enum categoryEnum {
+    news = '#D22328',
+    show = '#F5A528',
+    sport = '#40B14D',
+    lifestyle = '#EFC20C',
+    tech = '#47C0FF',
+    viral = '#297AF6',
+    video = '#9757F6',
+    sponsored = '#47C0FF'
+  }
 
   /* jhipster-needle-add-element-to-menu - JHipster will add new menu items here */
 
@@ -49,7 +62,11 @@ const Header = (props: IHeaderProps) => {
             <Button onClick={toggleMenu} color={'white'}>{menuOpen ? '-' : '+'}</Button>
             <Brand />
             {categories.map(category => (
-              <Category category={category} />
+              <Category
+                category={category}
+                color={categoryEnum[category]}
+                path={path}
+              />
             ))}
             <Collapse isOpen={menuOpen} navbar>
               <Nav id="header-tabs" className="ml-auto" navbar>
