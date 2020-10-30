@@ -28,3 +28,17 @@ export const Home = props => (
     </NavLink>
   </NavItem>
 );
+
+export const Category = ({ category })  => (
+  <NavItem
+    style={{
+      listStyleType: 'none',
+      textTransform: 'uppercase',
+      color: 'black'
+    }}
+  >
+    <NavLink tag={Link} to={`/category/${category}`} className="d-flex align-items-center">
+      <span style={{textTransform: 'capitalize'}}>{category}</span>
+    </NavLink>
+  </NavItem>
+)

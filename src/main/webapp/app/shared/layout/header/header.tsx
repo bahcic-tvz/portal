@@ -2,13 +2,9 @@ import './header.scss';
 
 import React, { useState } from 'react';
 
-import { Navbar, Nav, NavbarToggler, Button, Collapse, Row, Col } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { NavLink as Link } from 'react-router-dom';
+import { Navbar, Nav, Button, Collapse, Row, Col } from 'reactstrap';
 import LoadingBar from 'react-redux-loading-bar';
-
-import { Home, Brand } from './header-components';
+import { Brand, Category } from './header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu } from '../menus';
 
 export interface IHeaderProps {
@@ -30,6 +26,16 @@ const Header = (props: IHeaderProps) => {
     ) : null;
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  const categories = [
+    'news',
+    'show',
+    'sport',
+    'lifestyle',
+    'tech',
+    'trial',
+    'video',
+    'sponsored'
+  ]
 
   /* jhipster-needle-add-element-to-menu - JHipster will add new menu items here */
 
@@ -42,6 +48,9 @@ const Header = (props: IHeaderProps) => {
           <Navbar expand="sm" style={{border: 'none'}}>
             <Button onClick={toggleMenu} color={'white'}>{menuOpen ? '-' : '+'}</Button>
             <Brand />
+            {categories.map(category => (
+              <Category category={category} />
+            ))}
             <Collapse isOpen={menuOpen} navbar>
               <Nav id="header-tabs" className="ml-auto" navbar>
                 {/*<Home />*/}
