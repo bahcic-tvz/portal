@@ -15,7 +15,7 @@ export const Home = (props: IHomeProp) => {
 
   return (
     <Row>
-      <Col md={{size: 8, offset: 2}} >
+      <Col lg={{size: 8, offset: 2}} md={{size: 10, offset: 1}} sm={{size: 12, offset: 0}}>
         <h2>Homepage</h2>
       </Col>
     </Row>

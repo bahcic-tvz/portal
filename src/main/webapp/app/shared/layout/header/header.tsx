@@ -34,22 +34,26 @@ const Header = (props: IHeaderProps) => {
   /* jhipster-needle-add-element-to-menu - JHipster will add new menu items here */
 
   return (
-    <div id="app-header">
-      {/*{renderDevRibbon()}*/}
-      <LoadingBar className="loading-bar" />
-      <Navbar expand="sm" fixed="top" style={{border: 'none'}}>
-        <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
-        <Brand />
-        <Collapse isOpen={menuOpen} navbar>
-          <Nav id="header-tabs" className="ml-auto" navbar>
-            {/*<Home />*/}
-            {props.isAuthenticated && props.isAdmin && <EntitiesMenu />}
-            {props.isAuthenticated && props.isAdmin && <AdminMenu showSwagger={props.isSwaggerEnabled} />}
-            <AccountMenu isAuthenticated={props.isAuthenticated} />
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
+    <Row>
+      <Col lg={{size: 8, offset: 2}} md={{size: 10, offset: 1}} sm={{size: 12, offset: 0}}>
+        <div id="app-header">
+          {/*{renderDevRibbon()}*/}
+          <LoadingBar className="loading-bar" />
+          <Navbar expand="sm" style={{border: 'none'}}>
+            <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
+            <Brand />
+            <Collapse isOpen={menuOpen} navbar>
+              <Nav id="header-tabs" className="ml-auto" navbar>
+                {/*<Home />*/}
+                {props.isAuthenticated && props.isAdmin && <EntitiesMenu />}
+                {props.isAuthenticated && props.isAdmin && <AdminMenu showSwagger={props.isSwaggerEnabled} />}
+                <AccountMenu isAuthenticated={props.isAuthenticated} />
+              </Nav>
+            </Collapse>
+          </Navbar>
+        </div>
+      </Col>
+    </Row>
   );
 };
 
