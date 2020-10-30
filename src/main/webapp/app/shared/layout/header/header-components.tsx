@@ -38,7 +38,7 @@ export const Category = ({ category })  => (
     }}
   >
     <NavLink tag={Link} to={`/category/${category}`} className="d-flex align-items-center">
-      <span style={{textTransform: 'capitalize'}}>{category}</span>
+      <span>{category}</span>
     </NavLink>
   </NavItem>
 )
