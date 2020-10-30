@@ -35,9 +35,9 @@ const Header = (props: IHeaderProps) => {
 
   return (
     <Row>
+      {renderDevRibbon()}
       <Col lg={{size: 8, offset: 2}} md={{size: 10, offset: 1}} sm={{size: 12, offset: 0}}>
         <div id="app-header">
-          {/*{renderDevRibbon()}*/}
           <LoadingBar className="loading-bar" />
           <Navbar expand="sm" style={{border: 'none'}}>
             <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
