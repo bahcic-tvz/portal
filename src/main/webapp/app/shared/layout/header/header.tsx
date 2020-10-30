@@ -2,7 +2,7 @@ import './header.scss';
 
 import React, { useState } from 'react';
 
-import { Navbar, Nav, NavbarToggler, NavbarBrand, Collapse, Row, Col } from 'reactstrap';
+import { Navbar, Nav, NavbarToggler, Button, Collapse, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { NavLink as Link } from 'react-router-dom';
@@ -40,7 +40,7 @@ const Header = (props: IHeaderProps) => {
         <div id="app-header">
           <LoadingBar className="loading-bar" />
           <Navbar expand="sm" style={{border: 'none'}}>
-            <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
+            <Button onClick={toggleMenu} color={'white'}>{menuOpen ? '-' : '+'}</Button>
             <Brand />
             <Collapse isOpen={menuOpen} navbar>
               <Nav id="header-tabs" className="ml-auto" navbar>
