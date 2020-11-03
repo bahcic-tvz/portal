@@ -60,9 +60,9 @@ class LoginModal extends React.Component<ILoginModalProps> {
               </Col>
             </Row>
             <div className="mt-1">&nbsp;</div>
-            <Alert color="warning">
-              <Link to="/account/reset/request">Did you forget your password?</Link>
-            </Alert>
+            {/*<Alert color="warning">*/}
+            {/*  <Link to="/account/reset/request">Did you forget your password?</Link>*/}
+            {/*</Alert>*/}
             <Alert color="warning">
               <span>You don&apos;t have an account yet?</span> <Link to="/account/register">Register a new account</Link>
             </Alert>

@@ -40,7 +40,7 @@ export const PasswordResetFinishPage = (props: IPasswordResetFinishProps) => {
           }}
           onChange={updatePassword}
         />
-        <PasswordStrengthBar password={password} />
+        {/*<PasswordStrengthBar password={password} />*/}
         <AvField
           name="confirmPassword"
           label="New password confirmation"

@@ -55,7 +55,7 @@ export const PasswordPage = (props: IUserPasswordProps) => {
               }}
               onChange={updatePassword}
             />
-            <PasswordStrengthBar password={password} />
+            {/*<PasswordStrengthBar password={password} />*/}
             <AvField
               name="confirmPassword"
               label="New password confirmation"
