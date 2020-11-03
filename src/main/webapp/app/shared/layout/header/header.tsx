@@ -17,13 +17,6 @@ export interface IHeaderProps {
   isSwaggerEnabled: boolean;
 }
 
-// todo 0. ne dirati nista za admina dok ne dode vrijeme - DONE
-// todo 1. slozit da button lijevo nije plus minus nego prava stvar i da se ne prikazuje kad nije mobile - DONE
-// todo 2. fixati - zasto stalno imam vodoravni scroll bar - DONE
-// todo 3. pogledati rute, namjestiti da i logiran i ne logiran user moze ic po kategorijama
-// todo 4. namjestiti da homepage redirecta na /category/news
-// todo 5. namjestiti da /logout redirecta na /category/news
-
 const Header = (props: IHeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname: path } = useLocation()

@@ -1,7 +1,7 @@
 import './home.scss';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { Row, Col, Alert } from 'reactstrap';
@@ -14,11 +14,12 @@ export const Home = (props: IHomeProp) => {
   const { account } = props;
 
   return (
-    <Row>
-      <Col lg={{size: 8, offset: 2}} md={{size: 10, offset: 1}} sm={{size: 12, offset: 0}}>
-        <h2>Homepage</h2>
-      </Col>
-    </Row>
+    <Redirect to={"/category/news"} />
+    // <Row>
+    //   <Col lg={{size: 8, offset: 2}} md={{size: 10, offset: 1}} sm={{size: 12, offset: 0}}>
+    //     <h2>Homepage</h2>
+    //   </Col>
+    // </Row>
   );
 };
 
