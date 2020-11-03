@@ -18,8 +18,8 @@ export interface IHeaderProps {
 }
 
 // todo 0. ne dirati nista za admina dok ne dode vrijeme - DONE
-// todo 1. slozit da button lijevo nije plus minus nego prava stvar i da se ne prikazuje kad nije mobile
-// todo 2. fixati - zasto stalno imam vodoravni scroll bar
+// todo 1. slozit da button lijevo nije plus minus nego prava stvar i da se ne prikazuje kad nije mobile - DONE
+// todo 2. fixati - zasto stalno imam vodoravni scroll bar - DONE
 // todo 3. pogledati rute, namjestiti da i logiran i ne logiran user moze ic po kategorijama
 // todo 4. namjestiti da homepage redirecta na /category/news
 // todo 5. namjestiti da /logout redirecta na /category/news
@@ -61,7 +61,7 @@ const Header = (props: IHeaderProps) => {
   /* jhipster-needle-add-element-to-menu - JHipster will add new menu items here */
 
   return (
-    <Row>
+    <>
       {renderDevRibbon()}
       <Col lg={{size: 8, offset: 2}} md={{size: 10, offset: 1}} sm={{size: 12, offset: 0}}>
         <div id="app-header">
@@ -96,7 +96,7 @@ const Header = (props: IHeaderProps) => {
           </Navbar>
         </div>
       </Col>
-    </Row>
+    </>
   );
 };
 
