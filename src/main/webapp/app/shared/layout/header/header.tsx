@@ -2,11 +2,12 @@ import './header.scss';
 
 import React, { useState } from 'react';
 
-import { Navbar, Nav, Button, Collapse, Row, Col } from 'reactstrap';
+import { Navbar, Nav, Button, Collapse, Row, Col, NavbarToggler } from 'reactstrap';
 import LoadingBar from 'react-redux-loading-bar';
-import { Brand, Category } from './header-components';
+import {Brand, BrandIcon, Category} from './header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu } from '../menus';
 import { useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export interface IHeaderProps {
   isAuthenticated: boolean;
@@ -15,6 +16,13 @@ export interface IHeaderProps {
   isInProduction: boolean;
   isSwaggerEnabled: boolean;
 }
+
+// todo 0. ne dirati nista za admina dok ne dode vrijeme - DONE
+// todo 1. slozit da button lijevo nije plus minus nego prava stvar i da se ne prikazuje kad nije mobile
+// todo 2. fixati - zasto stalno imam vodoravni scroll bar
+// todo 3. pogledati rute, namjestiti da i logiran i ne logiran user moze ic po kategorijama
+// todo 4. namjestiti da homepage redirecta na /category/news
+// todo 5. namjestiti da /logout redirecta na /category/news
 
 const Header = (props: IHeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -59,7 +67,9 @@ const Header = (props: IHeaderProps) => {
         <div id="app-header">
           <LoadingBar className="loading-bar" />
           <Navbar expand="sm" style={{border: 'none'}}>
-            <Button onClick={toggleMenu} color={'white'}>{menuOpen ? '-' : '+'}</Button>
+            <NavbarToggler onClick={toggleMenu}>
+              <FontAwesomeIcon icon="bars" />
+            </NavbarToggler>
             <Brand />
             <Collapse isOpen={menuOpen} navbar>
               <Nav id="header-tabs" className="mr-auto" navbar>
