@@ -109,6 +109,14 @@ export const getEntities: ICrudGetAllAction<IArticle> = (page, size, sort) => {
   };
 };
 
+export const getArticlesByCategory: ICrudGetAllAction<IArticle> = category => {
+  const requestUrl = `${apiUrl}/category/${category}`;
+  return {
+    type: ACTION_TYPES.FETCH_ARTICLE_LIST,
+    payload: axios.get<IArticle>(requestUrl),
+  };
+};
+
 export const getEntity: ICrudGetAction<IArticle> = id => {
   const requestUrl = `${apiUrl}/${id}`;
   return {

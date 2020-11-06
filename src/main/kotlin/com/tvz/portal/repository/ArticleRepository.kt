@@ -14,4 +14,7 @@ interface ArticleRepository : JpaRepository<Article, Long> {
 
     @Query("select article from Article article where article.author.login = ?#{principal.username}")
     fun findByAuthorIsCurrentUser(): MutableList<Article>
+
+    @Query("select * from article a where a.category = :category", nativeQuery = true)
+    fun findAllByCategory(category: String): MutableList<Article>
 }

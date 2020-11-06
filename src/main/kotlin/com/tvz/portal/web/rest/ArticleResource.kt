@@ -122,4 +122,11 @@ class ArticleResource(
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build()
     }
+
+    @GetMapping("/articles/category/{category}")
+    fun getCategoryArticles(@PathVariable category: String): ResponseEntity<List<Article>> {
+        log.debug("REST request to get Articles for category = $category")
+        val articles = articleRepository.findAllByCategory(category.toUpperCase())
+        return ResponseEntity.ok().body(articles)
+    }
 }
