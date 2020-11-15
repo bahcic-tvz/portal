@@ -30,7 +30,7 @@ export const Home = props => (
 );
 
 export const Category = ({ category, color, path })  => {
-  const active = path === `/category/${category}`
+  const active = path.includes(`/category/${category}`)
   return (
     <NavItem
       style={{
