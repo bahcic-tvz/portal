@@ -2,6 +2,7 @@ import './articlePreview.scss';
 import React from 'react';
 import { IArticle } from "app/shared/model/article.model";
 import { Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 interface Props {
   index: number
@@ -51,27 +52,32 @@ const generateArticle = (index: number) => {
 
 export const ArticlePreview = ({ index, article }: Props) => {
   const { lg, md, sm, color, height } = generateArticle(index)
-
+  const dashedTitle = article.title.toLowerCase().replace(/[\W_]+/g,"-")
+  const linkTo = `/category/news/${dashedTitle}-${article.id}`
   return (
     <Col lg={lg} md={md} sm={sm} style={{backgroundColor: 'transparent'}}>
-      <div className={"image-container"}>
-        <img src={article.photoURL} alt={`Photo by ${article.photoAuthor}`} width={'100%'}/>
-        <div
-          className={"bottom-left-tag"}
-          style={{backgroundColor: tagColor[article.category.toLowerCase()]}}
-        >
-          {article.tag}
+      <Link to={linkTo} className="preview-link">
+        <div className="article-preview-container">
+          <div className={"image-container"}>
+            <img src={article.photoURL} alt={`Photo by ${article.photoAuthor}`} width={'100%'}/>
+            <div
+              className={"bottom-left-tag"}
+              style={{backgroundColor: tagColor[article.category.toLowerCase()]}}
+            >
+              {article.tag}
+            </div>
+          </div>
+          {article.hero && (
+            <h1>{article.title}</h1>
+          )}
+          {!article.hero && (
+            <div>
+              <h2>{article.title}</h2>
+              <p>{article.summary}</p>
+            </div>
+          )}
         </div>
-      </div>
-      {article.hero && (
-        <h1>{article.title}</h1>
-      )}
-      {!article.hero && (
-        <div>
-          <h2>{article.title}</h2>
-          <p>{article.summary}</p>
-        </div>
-      )}
+      </Link>
     </Col>
   )
 }

@@ -1,7 +1,10 @@
 .image-container {
   position: relative;
   text-align: center;
-  color: white;
+  color: white !important;
+  :hover {
+    color: white !important;
+  }
 }
 
 .bottom-left-tag {
@@ -15,6 +18,17 @@
 
 h1,
 h2 {
-  font-weight: bold;
+  font-weight: 900;
   margin-top: 5px;
+}
+
+.article-preview-container {
+  margin-bottom: 30px;
+}
+
+.preview-link {
+  text-decoration: none !important;
+  :hover {
+    color: #383838;
+  }
 }
