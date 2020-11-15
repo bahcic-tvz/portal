@@ -1,0 +1,20 @@
+.image-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.bottom-left-tag {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 2px 6px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+h1,
+h2 {
+  font-weight: bold;
+  margin-top: 5px;
+}

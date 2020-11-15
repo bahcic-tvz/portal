@@ -15,11 +15,11 @@ export interface IArticle {
   poweredBy?: string;
   poweredByURL?: string;
   content?: string;
-  isHero?: boolean;
+  hero?: boolean;
   comments?: IComment[];
   author?: IUser;
 }
 
 export const defaultValue: Readonly<IArticle> = {
-  isHero: false,
+  hero: false,
 };
