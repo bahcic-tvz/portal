@@ -98,6 +98,7 @@ export default (state: ArticleState = initialState, action): ArticleState => {
 };
 
 const apiUrl = 'api/articles';
+const apiUrlUnAuth = 'api/no-auth/articles';
 
 // Actions
 
@@ -110,7 +111,7 @@ export const getEntities: ICrudGetAllAction<IArticle> = (page, size, sort) => {
 };
 
 export const getArticlesByCategory: ICrudGetAllAction<IArticle> = category => {
-  const requestUrl = `${apiUrl}/category/${category}`;
+  const requestUrl = `${apiUrlUnAuth}/category/${category}`;
   return {
     type: ACTION_TYPES.FETCH_ARTICLE_LIST,
     payload: axios.get<IArticle>(requestUrl),
