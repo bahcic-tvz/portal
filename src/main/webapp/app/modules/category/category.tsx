@@ -20,7 +20,12 @@ export const Category = (props: ICategoryProp) => {
   return (
     <>
       <Row>
-        <Col lg={{size: 8, offset: 2}} md={{size: 10, offset: 1}} sm={{size: 12, offset: 0}}>
+        <Col
+          lg={{size: 8, offset: 2}}
+          md={{size: 10, offset: 1}}
+          sm={{size: 12, offset: 0}}
+          className={"col-wrapper"}
+        >
           <Row>
             {props.articleList.map((article: IArticle, index: number) => (
               <ArticlePreview

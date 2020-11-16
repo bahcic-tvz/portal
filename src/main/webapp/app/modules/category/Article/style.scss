@@ -1,0 +1,62 @@
+.article-tag {
+  width: max-content;
+  padding: 0 6px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white !important;
+}
+
+.author-name {
+  color: dodgerblue;
+}
+
+.top-content {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 900;
+}
+
+.photo-author {
+  font-weight: bold;
+  padding: 8px 0 3px 0;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 15px;
+}
+
+.article-summary {
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.article-content-wrapper {
+  margin-left: 7%;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 40px;
+  }
+  .col-wrapper {
+    padding: 0;
+  }
+  .article-content-wrapper {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  h1 {
+    font-size: 26px;
+  }
+  .article-summary {
+    font-weight: bold;
+    font-size: 21px;
+    line-height: 25px;
+  }
+}
