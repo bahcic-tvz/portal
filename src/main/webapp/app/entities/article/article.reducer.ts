@@ -126,6 +126,14 @@ export const getEntity: ICrudGetAction<IArticle> = id => {
   };
 };
 
+export const getArticleById: ICrudGetAction<IArticle> = id => {
+  const requestUrl = `${apiUrlUnAuth}/${id}`;
+  return {
+    type: ACTION_TYPES.FETCH_ARTICLE,
+    payload: axios.get<IArticle>(requestUrl),
+  };
+};
+
 export const createEntity: ICrudPutAction<IArticle> = entity => async dispatch => {
   const result = await dispatch({
     type: ACTION_TYPES.CREATE_ARTICLE,

@@ -2,6 +2,7 @@ package com.tvz.portal.web.rest
 
 import com.tvz.portal.domain.Article
 import com.tvz.portal.repository.ArticleRepository
+import io.github.jhipster.web.util.ResponseUtil
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.transaction.annotation.Transactional
@@ -23,5 +24,12 @@ class UnauthorizedResource(
         log.debug("REST request to get Articles for category = $category")
         val articles = articleRepository.findAllByCategory(category.toUpperCase())
         return ResponseEntity.ok().body(articles)
+    }
+
+    @GetMapping("/articles/{id}")
+    fun getArticle(@PathVariable id: Long): ResponseEntity<Article> {
+        log.debug("REST request to get Article = $id")
+        val article = articleRepository.findById(id)
+        return ResponseUtil.wrapOrNotFound(article)
     }
 }
