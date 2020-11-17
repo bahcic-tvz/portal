@@ -14,4 +14,6 @@ interface CommentRepository : JpaRepository<Comment, Long> {
 
     @Query("select comment from Comment comment where comment.author.login = ?#{principal.username}")
     fun findByAuthorIsCurrentUser(): MutableList<Comment>
+
+    fun findAllByArticleId(articleId: Long): List<Comment>
 }

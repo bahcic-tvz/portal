@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction, ICrudDeleteAction } from 'react-jhipster';
+import { ICrudDeleteAction, ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
 
 import { cleanEntity } from 'app/shared/util/entity-utils';
-import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
+import { FAILURE, REQUEST, SUCCESS } from 'app/shared/reducers/action-type.util';
 
-import { IComment, defaultValue } from 'app/shared/model/comment.model';
+import { defaultValue, IComment } from 'app/shared/model/comment.model';
 
 export const ACTION_TYPES = {
   FETCH_COMMENT_LIST: 'comment/FETCH_COMMENT_LIST',
@@ -98,6 +98,7 @@ export default (state: CommentState = initialState, action): CommentState => {
 };
 
 const apiUrl = 'api/comments';
+const apiUrlNoAuth = 'api/no-auth/comments';
 
 // Actions
 
@@ -106,6 +107,14 @@ export const getEntities: ICrudGetAllAction<IComment> = (page, size, sort) => {
   return {
     type: ACTION_TYPES.FETCH_COMMENT_LIST,
     payload: axios.get<IComment>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`),
+  };
+};
+
+export const getCommentsForArticle: ICrudGetAllAction<IComment> = (id: number) => {
+  const requestUrl = `${apiUrlNoAuth}/article/${id}`;
+  return {
+    type: ACTION_TYPES.FETCH_COMMENT_LIST,
+    payload: axios.get<IComment>(requestUrl),
   };
 };
 
@@ -124,6 +133,13 @@ export const createEntity: ICrudPutAction<IComment> = entity => async dispatch =
   });
   dispatch(getEntities());
   return result;
+};
+
+export const postComment: ICrudPutAction<IComment> = (comment: {}) => async dispatch => {
+  return await dispatch({
+    type: ACTION_TYPES.CREATE_COMMENT,
+    payload: axios.post(apiUrlNoAuth, comment),
+  });
 };
 
 export const updateEntity: ICrudPutAction<IComment> = entity => async dispatch => {

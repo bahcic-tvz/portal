@@ -13,6 +13,8 @@ import {
   WhatsappShareButton,
   FacebookMessengerShareButton
 } from "react-share";
+import Comments from "app/modules/category/Article/Comments/comments";
+import {getCommentsForArticle} from "app/entities/comment/comment.reducer";
 
 enum tagColor {
   news = '#D22328',
@@ -99,7 +101,7 @@ const Article = (props: ICategoryProp) => {
               {props.article.content}
             </div>
             <div>
-              Komentari
+              <Comments articleId={articleId} />
             </div>
           </div>
         </Col>
@@ -117,10 +119,7 @@ const Article = (props: ICategoryProp) => {
 };
 
 const mapStateToProps = storeState => ({
-  account: storeState.authentication.account,
-  isAuthenticated: storeState.authentication.isAuthenticated,
   article: storeState.article.entity,
-  loading: storeState.article.loading
 });
 
 const mapDispatchToProps = {
