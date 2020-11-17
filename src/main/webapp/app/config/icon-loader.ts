@@ -29,6 +29,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { faRoad } from '@fortawesome/free-solid-svg-icons/faRoad';
 import { faCloud } from '@fortawesome/free-solid-svg-icons/faCloud';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
+import { faComments } from '@fortawesome/free-regular-svg-icons/faComments';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons/faFacebook';
+import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons/faFacebookMessenger';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons/faWhatsapp';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
+import { faLink } from '@fortawesome/free-solid-svg-icons/faLink';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 
@@ -64,6 +70,12 @@ export const loadIcons = () => {
     faCloud,
     faTimesCircle,
     faSearch,
-    faBars
+    faBars,
+    faComments,
+    faFacebook,
+    faFacebookMessenger,
+    faWhatsapp,
+    faTwitter,
+    faLink
   );
 };

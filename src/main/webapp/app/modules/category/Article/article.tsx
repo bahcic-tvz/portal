@@ -5,6 +5,8 @@ import { getArticleById } from "app/entities/article/article.reducer";
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { convertDateTimeForArticle, getDayCroatian } from "app/shared/util/date-utils";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { toast } from 'react-toastify';
 
 enum tagColor {
   news = '#D22328',
@@ -62,7 +64,22 @@ const Article = (props: ICategoryProp) => {
           </div>
           <div className={"article-content-wrapper"}>
             <div className={"social-media"}>
-              Twitter, Facebook, ... Komentari
+              <span className={"comments"}>
+                <FontAwesomeIcon icon={["far", "comments"]} />{' '}
+                <span>Komentari</span>{' '}
+                <span className={"count"}>0</span>
+              </span>
+              <FontAwesomeIcon icon={["fab", "facebook"]} className={"facebook"} />{' '}
+              <FontAwesomeIcon icon={["fab", "facebook-messenger"]} className={"facebook-messenger"} />{' '}
+              <FontAwesomeIcon icon={["fab", "twitter"]} className={"twitter"} />{' '}
+              <FontAwesomeIcon icon={["fab", "whatsapp"]} className={"whatsapp"} />{' '}
+              <FontAwesomeIcon
+                icon={["fas", "link"]} className={"link"}
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href)
+                  toast.success('Link kopiran u meduspremnik!');
+                }}
+              />{' '}
             </div>
             <div>
               {props.article.content}
