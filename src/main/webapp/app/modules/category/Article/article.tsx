@@ -7,6 +7,12 @@ import { useParams } from 'react-router-dom';
 import { convertDateTimeForArticle, getDayCroatian } from "app/shared/util/date-utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from 'react-toastify';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  FacebookMessengerShareButton
+} from "react-share";
 
 enum tagColor {
   news = '#D22328',
@@ -69,10 +75,18 @@ const Article = (props: ICategoryProp) => {
                 <span>Komentari</span>{' '}
                 <span className={"count"}>0</span>
               </span>
-              <FontAwesomeIcon icon={["fab", "facebook"]} className={"facebook"} />{' '}
-              <FontAwesomeIcon icon={["fab", "facebook-messenger"]} className={"facebook-messenger"} />{' '}
-              <FontAwesomeIcon icon={["fab", "twitter"]} className={"twitter"} />{' '}
-              <FontAwesomeIcon icon={["fab", "whatsapp"]} className={"whatsapp"} />{' '}
+              <FacebookShareButton url={window.location.href}>
+                <FontAwesomeIcon icon={["fab", "facebook"]} className={"facebook"} />{' '}
+              </FacebookShareButton>
+              <FacebookMessengerShareButton url={window.location.href} appId={'undefined'}>
+                <FontAwesomeIcon icon={["fab", "facebook-messenger"]} className={"facebook-messenger"} />{' '}
+              </FacebookMessengerShareButton>
+              <TwitterShareButton url={window.location.href}>
+                <FontAwesomeIcon icon={["fab", "twitter"]} className={"twitter"} />{' '}
+              </TwitterShareButton>
+              <WhatsappShareButton url={window.location.href}>
+                <FontAwesomeIcon icon={["fab", "whatsapp"]} className={"whatsapp"} />{' '}
+              </WhatsappShareButton>
               <FontAwesomeIcon
                 icon={["fas", "link"]} className={"link"}
                 onClick={() => {

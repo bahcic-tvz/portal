@@ -83,23 +83,23 @@ h1 {
   .twitter,
   .whatsapp,
   .link {
-    margin-left: 3px;
-    margin-right: 3px;
+    margin-left: 6px;
+    margin-right: 6px;
     cursor: pointer;
     &:hover {
-      margin-left: 1px;
-      margin-right: 1px;
+      margin-left: 4px;
+      margin-right: 4px;
       font-size: 29px;
     }
   }
 
   .facebook {
     margin-left: 15px;
-    margin-right: 3px;
+    margin-right: 6px;
     cursor: pointer;
     &:hover {
       margin-left: 13px;
-      margin-right: 1px;
+      margin-right: 4px;
       font-size: 29px;
     }
   }
