@@ -12,5 +12,5 @@ export const convertDateTimeForArticle = date => (date ? moment(date).format(APP
 
 export const getDayCroatian = date =>
   ['ponedjeljak', 'utorak', 'srijeda', 'cetvrtak', 'petak', 'subota', 'nedjelja'][
-    moment(date, APP_LOCAL_DATETIME_FORMAT_Z).toDate().getDay()
+    moment(date, APP_LOCAL_DATETIME_FORMAT_Z).toDate().getDay() - 1
   ];

@@ -1,0 +1,56 @@
+textarea {
+  resize: none;
+}
+.textarea {
+  overflow: unset;
+  min-height: 110px;
+}
+
+.comment-form {
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid lightgray;
+}
+
+.fake-image {
+  font-weight: 900;
+  padding: 10px;
+  width: max-content;
+  height: max-content;
+  border-radius: 10px;
+}
+
+.full-name {
+  font-weight: bold;
+}
+
+.comment-date-time {
+  color: gray;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.comment-content {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.log-in-comment {
+  color: gray;
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+@media only screen and (max-width: 770px) {
+  .sub-button {
+    position: relative;
+    float: right;
+  }
+}
+// 380
+@media only screen and (max-width: 1300px) and (min-width: 374px) {
+  .comment-cont-wrapper {
+    margin-left: 20px;
+  }
+}

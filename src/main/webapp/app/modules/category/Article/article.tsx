@@ -1,5 +1,5 @@
 import './style.scss'
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Col, Row } from 'reactstrap';
 import { getArticleById } from "app/entities/article/article.reducer";
 import { connect } from 'react-redux';
@@ -34,9 +34,15 @@ const Article = (props: ICategoryProp) => {
   const articleId = article.split('-')[article.split('-').length - 1] as number
   // const author = props.article.author
   // const authorName = author.firstName + ' ' + author.lastName
+  const myRef = useRef(null)
+  const executeScroll = () => {
+    const y = myRef.current.getBoundingClientRect().top + window.pageYOffset - 100;
+    window.scrollTo({top: y, behavior: 'smooth'});
+  }
 
   useEffect(() => {
     props.getArticleById(articleId);
+    props.getCommentsForArticle(articleId);
   }, [article])
 
   return (
@@ -72,10 +78,12 @@ const Article = (props: ICategoryProp) => {
           </div>
           <div className={"article-content-wrapper"}>
             <div className={"social-media"}>
-              <span className={"comments"}>
+              <span className={"comments"} onClick={executeScroll} >
                 <FontAwesomeIcon icon={["far", "comments"]} />{' '}
                 <span>Komentari</span>{' '}
-                <span className={"count"}>0</span>
+                <span className={"count"}>
+                  {props.comments.length}
+                </span>
               </span>
               <FacebookShareButton url={window.location.href}>
                 <FontAwesomeIcon icon={["fab", "facebook"]} className={"facebook"} />{' '}
@@ -99,9 +107,50 @@ const Article = (props: ICategoryProp) => {
             </div>
             <div>
               {props.article.content}
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
+              content
+              <br/>
             </div>
-            <div>
-              <Comments articleId={articleId} />
+            <div ref={myRef}>
+              <Comments
+                articleId={articleId}
+                comments={props.comments}
+              />
             </div>
           </div>
         </Col>
@@ -120,10 +169,12 @@ const Article = (props: ICategoryProp) => {
 
 const mapStateToProps = storeState => ({
   article: storeState.article.entity,
+  comments: storeState.comment.entities
 });
 
 const mapDispatchToProps = {
   getArticleById,
+  getCommentsForArticle,
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
