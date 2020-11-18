@@ -14,7 +14,7 @@ export const Category = (props: ICategoryProp) => {
   const { category } = useParams();
 
   useEffect(() => {
-    props.getArticlesByCategory(category); // TODO: get sorted, hero first, then by date ... also w\out content
+    props.getArticlesByCategory(category);
   }, [category])
 
   return (

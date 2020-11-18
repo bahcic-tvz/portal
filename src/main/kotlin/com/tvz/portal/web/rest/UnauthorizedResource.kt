@@ -2,6 +2,7 @@ package com.tvz.portal.web.rest
 
 import com.tvz.portal.domain.Article
 import com.tvz.portal.domain.Comment
+import com.tvz.portal.domain.enumeration.Category
 import com.tvz.portal.repository.ArticleRepository
 import com.tvz.portal.repository.CommentRepository
 import com.tvz.portal.service.UserService
@@ -28,7 +29,7 @@ class UnauthorizedResource(
     @GetMapping("/articles/category/{category}")
     fun getCategoryArticles(@PathVariable category: String): ResponseEntity<List<Article>> {
         log.debug("REST request to get Articles for category = $category")
-        val articles = articleRepository.findAllByCategory(category.toUpperCase())
+        val articles = articleRepository.findAllByCategoryOrderByIsHeroDesc(Category.valueOf(category.toUpperCase()))
         return ResponseEntity.ok().body(articles)
     }
 
