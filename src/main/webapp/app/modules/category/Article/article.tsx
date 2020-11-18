@@ -32,8 +32,8 @@ interface ICategoryProp extends StateProps, DispatchProps {}
 const Article = (props: ICategoryProp) => {
   const { article, category } = useParams()
   const articleId = article.split('-')[article.split('-').length - 1] as number
-  // const author = props.article.author
-  // const authorName = author.firstName + ' ' + author.lastName
+  const author = props.article.author
+  const authorName = author ? author.firstName + ' ' + author.lastName : null
   const myRef = useRef(null)
   const executeScroll = () => {
     const y = myRef.current.getBoundingClientRect().top + window.pageYOffset - 100;
@@ -62,7 +62,9 @@ const Article = (props: ICategoryProp) => {
             </div>
             <h1>{props.article.title}</h1>
             <span>Piše{' '}
-              <span className={"author-name"}>Nepoznati Autor</span>
+              <span className={"author-name"}>
+                {authorName ?? "Nepoznati Autor"}
+              </span>
             </span>{', '}
             <span>{getDayCroatian(props.article.posted)}</span>{', '}
             <span>{convertDateTimeForArticle(props.article.posted)}</span>
