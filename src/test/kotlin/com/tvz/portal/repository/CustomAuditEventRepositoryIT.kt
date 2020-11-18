@@ -3,7 +3,6 @@ package com.tvz.portal.repository
 import com.tvz.portal.PortalApp
 import com.tvz.portal.config.ANONYMOUS_USER
 import com.tvz.portal.config.audit.AuditEventConverter
-import com.tvz.portal.domain.PersistentAuditEvent
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -14,7 +13,6 @@ import org.springframework.mock.web.MockHttpServletRequest
 import org.springframework.mock.web.MockHttpSession
 import org.springframework.security.web.authentication.WebAuthenticationDetails
 import org.springframework.transaction.annotation.Transactional
-import java.time.Instant
 import java.time.temporal.ChronoUnit
 
 /**
@@ -36,26 +34,26 @@ class CustomAuditEventRepositoryIT {
     fun setup() {
         customAuditEventRepository = CustomAuditEventRepository(persistenceAuditEventRepository, auditEventConverter)
         persistenceAuditEventRepository.deleteAll()
-        val oneHourAgo = Instant.now().minusSeconds(3600)
+//        val oneHourAgo = Instant.now().minusSeconds(3600)
 
-        val testUserEvent = PersistentAuditEvent(
-            principal = "test-user",
-            auditEventType = "test-type",
-            auditEventDate = oneHourAgo,
-            data = mutableMapOf("test-key" to "test-value")
-        )
-
-        val testOldUserEvent = PersistentAuditEvent(
-            principal = "test-user",
-            auditEventType = "test-type",
-            auditEventDate = oneHourAgo.minusSeconds(10000)
-        )
-
-        val testOtherUserEvent = PersistentAuditEvent(
-            principal = "other-test-user",
-            auditEventType = "test-type",
-            auditEventDate = oneHourAgo
-        )
+//        val testUserEvent = PersistentAuditEvent(
+//            principal = "test-user",
+//            auditEventType = "test-type",
+//            auditEventDate = oneHourAgo,
+//            data = mutableMapOf("test-key" to "test-value")
+//        )
+//
+//        val testOldUserEvent = PersistentAuditEvent(
+//            principal = "test-user",
+//            auditEventType = "test-type",
+//            auditEventDate = oneHourAgo.minusSeconds(10000)
+//        )
+//
+//        val testOtherUserEvent = PersistentAuditEvent(
+//            principal = "other-test-user",
+//            auditEventType = "test-type",
+//            auditEventDate = oneHourAgo
+//        )
     }
 
     @Test

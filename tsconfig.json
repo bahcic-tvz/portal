@@ -15,6 +15,7 @@
     "types": ["jest", "webpack-env"],
     "allowJs": true,
     "checkJs": false,
+    "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
       "app/*": ["src/main/webapp/app/*"]
@@ -24,5 +25,5 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["src/main/webapp/app", "src/test/javascript/spec"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/*.js", "**/*.tsx"]
 }

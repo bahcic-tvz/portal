@@ -64,13 +64,13 @@ data class Article(
 ) : Serializable {
 
     fun addComments(comment: Comment): Article {
-        this?.comments!!.add(comment)
+        this.comments!!.add(comment)
         comment.article = this
         return this
     }
 
     fun removeComments(comment: Comment): Article {
-        this?.comments!!.remove(comment)
+        this.comments!!.remove(comment)
         comment.article = null
         return this
     }

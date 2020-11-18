@@ -183,7 +183,7 @@ class UserServiceIT {
             )
         assertThat(users).isEmpty()
         userService.removeNotActivatedUsers()
-        val maybeDbUser = userRepository.findById(dbUser.id)
+        val maybeDbUser = userRepository.findById(dbUser.id!!)
         assertThat(maybeDbUser).contains(dbUser)
     }
 

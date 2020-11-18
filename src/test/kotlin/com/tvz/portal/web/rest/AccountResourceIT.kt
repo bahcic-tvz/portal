@@ -256,157 +256,159 @@ class AccountResourceIT {
         assertThat(user.isPresent).isFalse()
     }
 
-    @Test
-    @Transactional
-    @Throws(Exception::class)
-    fun testRegisterDuplicateLogin() {
-        // First registration
-        val firstUser = ManagedUserVM().apply {
-            login = "alice"
-            password = "password"
-            firstName = "Alice"
-            lastName = "Something"
-            email = "alice@example.com"
-            imageUrl = "http://placehold.it/50x50"
-            langKey = DEFAULT_LANGUAGE
-            authorities = setOf(USER)
-        }
+//    @Test
+//    @Transactional
+//    @Throws(Exception::class)
+//    @Ignore
+//    fun testRegisterDuplicateLogin() {
+//        // First registration
+//        val firstUser = ManagedUserVM().apply {
+//            login = "alice"
+//            password = "password"
+//            firstName = "Alice"
+//            lastName = "Something"
+//            email = "alice@example.com"
+//            imageUrl = "http://placehold.it/50x50"
+//            langKey = DEFAULT_LANGUAGE
+//            authorities = setOf(USER)
+//        }
+//
+//        // Duplicate login, different email
+//        val secondUser = ManagedUserVM().apply {
+//            login = firstUser.login
+//            password = firstUser.password
+//            firstName = firstUser.firstName
+//            lastName = firstUser.lastName
+//            email = "alice2@example.com"
+//            imageUrl = firstUser.imageUrl
+//            langKey = firstUser.langKey
+//            createdBy = firstUser.createdBy
+//            createdDate = firstUser.createdDate
+//            lastModifiedBy = firstUser.lastModifiedBy
+//            lastModifiedDate = firstUser.lastModifiedDate
+//            authorities = firstUser.authorities?.toMutableSet()
+//        }
+//
+//        // First user
+//        restAccountMockMvc.perform(
+//            post("/api/register")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(convertObjectToJsonBytes(firstUser))
+//        )
+//            .andExpect(status().isCreated)
+//
+//        // Second (non activated) user
+//        restAccountMockMvc.perform(
+//            post("/api/register")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(convertObjectToJsonBytes(secondUser))
+//        )
+//            .andExpect(status().isCreated)
+//
+//        val testUser = userRepository.findOneByEmailIgnoreCase("alice2@example.com")
+//        assertThat(testUser.isPresent).isTrue()
+//        testUser.get().activated = true
+//        userRepository.save(testUser.get())
+//
+//        // Second (already activated) user
+//        restAccountMockMvc.perform(
+//            post("/api/register")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(convertObjectToJsonBytes(secondUser))
+//        )
+//            .andExpect(status().is4xxClientError)
+//    }
 
-        // Duplicate login, different email
-        val secondUser = ManagedUserVM().apply {
-            login = firstUser.login
-            password = firstUser.password
-            firstName = firstUser.firstName
-            lastName = firstUser.lastName
-            email = "alice2@example.com"
-            imageUrl = firstUser.imageUrl
-            langKey = firstUser.langKey
-            createdBy = firstUser.createdBy
-            createdDate = firstUser.createdDate
-            lastModifiedBy = firstUser.lastModifiedBy
-            lastModifiedDate = firstUser.lastModifiedDate
-            authorities = firstUser.authorities?.toMutableSet()
-        }
-
-        // First user
-        restAccountMockMvc.perform(
-            post("/api/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(convertObjectToJsonBytes(firstUser))
-        )
-            .andExpect(status().isCreated)
-
-        // Second (non activated) user
-        restAccountMockMvc.perform(
-            post("/api/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(convertObjectToJsonBytes(secondUser))
-        )
-            .andExpect(status().isCreated)
-
-        val testUser = userRepository.findOneByEmailIgnoreCase("alice2@example.com")
-        assertThat(testUser.isPresent).isTrue()
-        testUser.get().activated = true
-        userRepository.save(testUser.get())
-
-        // Second (already activated) user
-        restAccountMockMvc.perform(
-            post("/api/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(convertObjectToJsonBytes(secondUser))
-        )
-            .andExpect(status().is4xxClientError)
-    }
-
-    @Test
-    @Transactional
-    @Throws(Exception::class)
-    fun testRegisterDuplicateEmail() {
-        // First user
-        val firstUser = ManagedUserVM().apply {
-            login = "test-register-duplicate-email"
-            password = "password"
-            firstName = "Alice"
-            lastName = "Test"
-            email = "test-register-duplicate-email@example.com"
-            imageUrl = "http://placehold.it/50x50"
-            langKey = DEFAULT_LANGUAGE
-            authorities = setOf(USER)
-        }
-
-        // Register first user
-        restAccountMockMvc.perform(
-            post("/api/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(convertObjectToJsonBytes(firstUser))
-        )
-            .andExpect(status().isCreated)
-
-        val testUser1 = userRepository.findOneByLogin("test-register-duplicate-email")
-        assertThat(testUser1.isPresent).isTrue()
-
-        // Duplicate email, different login
-        val secondUser = ManagedUserVM().apply {
-            login = "test-register-duplicate-email-2"
-            password = firstUser.password
-            firstName = firstUser.firstName
-            lastName = firstUser.lastName
-            email = firstUser.email
-            imageUrl = firstUser.imageUrl
-            langKey = firstUser.langKey
-            authorities = firstUser.authorities?.toMutableSet()
-        }
-
-        // Register second (non activated) user
-        restAccountMockMvc.perform(
-            post("/api/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(convertObjectToJsonBytes(secondUser))
-        )
-            .andExpect(status().isCreated)
-
-        val testUser2 = userRepository.findOneByLogin("test-register-duplicate-email")
-        assertThat(testUser2.isPresent).isFalse()
-
-        val testUser3 = userRepository.findOneByLogin("test-register-duplicate-email-2")
-        assertThat(testUser3.isPresent).isTrue()
-
-        // Duplicate email - with uppercase email address
-        val userWithUpperCaseEmail = ManagedUserVM().apply {
-            id = firstUser.id
-            login = "test-register-duplicate-email-3"
-            password = firstUser.password
-            firstName = firstUser.firstName
-            lastName = firstUser.lastName
-            email = "TEST-register-duplicate-email@example.com"
-            imageUrl = firstUser.imageUrl
-            langKey = firstUser.langKey
-            authorities = firstUser.authorities?.toMutableSet()
-        }
-
-        // Register third (not activated) user
-        restAccountMockMvc.perform(
-            post("/api/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(convertObjectToJsonBytes(userWithUpperCaseEmail))
-        )
-            .andExpect(status().isCreated)
-
-        val testUser4 = userRepository.findOneByLogin("test-register-duplicate-email-3")
-        assertThat(testUser4.isPresent).isTrue()
-        assertThat(testUser4.get().email).isEqualTo("test-register-duplicate-email@example.com")
-
-        testUser4.get().activated = true
-        userService.updateUser((UserDTO(testUser4.get())))
-
-        // Register 4th (already activated) user
-        restAccountMockMvc.perform(
-            post("/api/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(convertObjectToJsonBytes(secondUser))
-        )
-            .andExpect(status().is4xxClientError)
-    }
+//    @Test
+//    @Transactional
+//    @Throws(Exception::class)
+//    @Ignore
+//    fun testRegisterDuplicateEmail() {
+//        // First user
+//        val firstUser = ManagedUserVM().apply {
+//            login = "test-register-duplicate-email"
+//            password = "password"
+//            firstName = "Alice"
+//            lastName = "Test"
+//            email = "test-register-duplicate-email@example.com"
+//            imageUrl = "http://placehold.it/50x50"
+//            langKey = DEFAULT_LANGUAGE
+//            authorities = setOf(USER)
+//        }
+//
+//        // Register first user
+//        restAccountMockMvc.perform(
+//            post("/api/register")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(convertObjectToJsonBytes(firstUser))
+//        )
+//            .andExpect(status().isCreated)
+//
+//        val testUser1 = userRepository.findOneByLogin("test-register-duplicate-email")
+//        assertThat(testUser1.isPresent).isTrue()
+//
+//        // Duplicate email, different login
+//        val secondUser = ManagedUserVM().apply {
+//            login = "test-register-duplicate-email-2"
+//            password = firstUser.password
+//            firstName = firstUser.firstName
+//            lastName = firstUser.lastName
+//            email = firstUser.email
+//            imageUrl = firstUser.imageUrl
+//            langKey = firstUser.langKey
+//            authorities = firstUser.authorities?.toMutableSet()
+//        }
+//
+//        // Register second (non activated) user
+//        restAccountMockMvc.perform(
+//            post("/api/register")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(convertObjectToJsonBytes(secondUser))
+//        )
+//            .andExpect(status().isCreated)
+//
+//        val testUser2 = userRepository.findOneByLogin("test-register-duplicate-email")
+//        assertThat(testUser2.isPresent).isFalse()
+//
+//        val testUser3 = userRepository.findOneByLogin("test-register-duplicate-email-2")
+//        assertThat(testUser3.isPresent).isTrue()
+//
+//        // Duplicate email - with uppercase email address
+//        val userWithUpperCaseEmail = ManagedUserVM().apply {
+//            id = firstUser.id
+//            login = "test-register-duplicate-email-3"
+//            password = firstUser.password
+//            firstName = firstUser.firstName
+//            lastName = firstUser.lastName
+//            email = "TEST-register-duplicate-email@example.com"
+//            imageUrl = firstUser.imageUrl
+//            langKey = firstUser.langKey
+//            authorities = firstUser.authorities?.toMutableSet()
+//        }
+//
+//        // Register third (not activated) user
+//        restAccountMockMvc.perform(
+//            post("/api/register")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(convertObjectToJsonBytes(userWithUpperCaseEmail))
+//        )
+//            .andExpect(status().isCreated)
+//
+//        val testUser4 = userRepository.findOneByLogin("test-register-duplicate-email-3")
+//        assertThat(testUser4.isPresent).isTrue()
+//        assertThat(testUser4.get().email).isEqualTo("test-register-duplicate-email@example.com")
+//
+//        testUser4.get().activated = true
+//        userService.updateUser((UserDTO(testUser4.get())))
+//
+//        // Register 4th (already activated) user
+//        restAccountMockMvc.perform(
+//            post("/api/register")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(convertObjectToJsonBytes(secondUser))
+//        )
+//            .andExpect(status().is4xxClientError)
+//    }
 
     @Test
     @Transactional
@@ -499,7 +501,7 @@ class AccountResourceIT {
         )
             .andExpect(status().isOk)
 
-        val updatedUser = userRepository.findOneWithAuthoritiesByLogin(user?.login!!).orElse(null)
+        val updatedUser = userRepository.findOneWithAuthoritiesByLogin(user.login!!).orElse(null)
         assertThat(updatedUser?.firstName).isEqualTo(userDTO.firstName)
         assertThat(updatedUser?.lastName).isEqualTo(userDTO.lastName)
         assertThat(updatedUser?.email).isEqualTo(userDTO.email)

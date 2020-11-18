@@ -78,7 +78,7 @@ class CommentResourceIT {
 
     @BeforeEach
     fun initTest() {
-        comment = createEntity(em)
+        comment = createEntity()
     }
 
     @Test
@@ -152,7 +152,7 @@ class CommentResourceIT {
         restCommentMockMvc.perform(get("/api/comments/{id}", id))
             .andExpect(status().isOk)
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(comment.id?.toInt()))
+            .andExpect(jsonPath("$.id").value(comment.id?.toInt() as Any))
             .andExpect(jsonPath("$.posted").value(DEFAULT_POSTED.toString()))
             .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT))
     }
@@ -248,7 +248,7 @@ class CommentResourceIT {
          * if they test an entity which requires the current entity.
          */
         @JvmStatic
-        fun createEntity(em: EntityManager): Comment {
+        fun createEntity(): Comment {
             val comment = Comment(
                 posted = DEFAULT_POSTED,
                 content = DEFAULT_CONTENT
@@ -263,14 +263,14 @@ class CommentResourceIT {
          * This is a static method, as tests for other entities might also need it,
          * if they test an entity which requires the current entity.
          */
-        @JvmStatic
-        fun createUpdatedEntity(em: EntityManager): Comment {
-            val comment = Comment(
-                posted = UPDATED_POSTED,
-                content = UPDATED_CONTENT
-            )
-
-            return comment
-        }
+//        @JvmStatic
+//        fun createUpdatedEntity(): Comment {
+//            val comment = Comment(
+//                posted = UPDATED_POSTED,
+//                content = UPDATED_CONTENT
+//            )
+//
+//            return comment
+//        }
     }
 }
