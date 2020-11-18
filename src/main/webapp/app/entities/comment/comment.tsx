@@ -69,10 +69,10 @@ export const Comment = (props: ICommentProps) => {
     <div>
       <h2 id="comment-heading">
         Comments
-        <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-          <FontAwesomeIcon icon="plus" />
-          &nbsp; Create new Comment
-        </Link>
+        {/*<Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">*/}
+        {/*  <FontAwesomeIcon icon="plus" />*/}
+        {/*  &nbsp; Create new Comment*/}
+        {/*</Link>*/}
       </h2>
       <div className="table-responsive">
         {commentList && commentList.length > 0 ? (
@@ -101,9 +101,9 @@ export const Comment = (props: ICommentProps) => {
               {commentList.map((comment, i) => (
                 <tr key={`entity-${i}`}>
                   <td>
-                    <Button tag={Link} to={`${match.url}/${comment.id}`} color="link" size="sm">
+                    {/*<Button tag={Link} to={`${match.url}/${comment.id}`} color="link" size="sm">*/}
                       {comment.id}
-                    </Button>
+                    {/*</Button>*/}
                   </td>
                   <td>{comment.posted ? <TextFormat type="date" value={comment.posted} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{comment.content}</td>
@@ -111,17 +111,17 @@ export const Comment = (props: ICommentProps) => {
                   <td>{comment.article ? <Link to={`article/${comment.article.id}`}>{comment.article.title}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${comment.id}`} color="info" size="sm">
-                        <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
-                      </Button>
-                      <Button
-                        tag={Link}
-                        to={`${match.url}/${comment.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
-                        color="primary"
-                        size="sm"
-                      >
-                        <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
-                      </Button>
+                      {/*<Button tag={Link} to={`${match.url}/${comment.id}`} color="info" size="sm">*/}
+                      {/*  <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>*/}
+                      {/*</Button>*/}
+                      {/*<Button*/}
+                      {/*  tag={Link}*/}
+                      {/*  to={`${match.url}/${comment.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}*/}
+                      {/*  color="primary"*/}
+                      {/*  size="sm"*/}
+                      {/*>*/}
+                      {/*  <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>*/}
+                      {/*</Button>*/}
                       <Button
                         tag={Link}
                         to={`${match.url}/${comment.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}

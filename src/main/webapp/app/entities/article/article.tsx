@@ -97,27 +97,27 @@ export const Article = (props: IArticleProps) => {
                 <th className="hand" onClick={sort('summary')}>
                   Summary <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('photoURL')}>
-                  Photo URL <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('photoAuthor')}>
-                  Photo Author <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('poweredBy')}>
-                  Powered By <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('poweredByURL')}>
-                  Powered By URL <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('content')}>
-                  Content <FontAwesomeIcon icon="sort" />
-                </th>
+                {/*<th className="hand" onClick={sort('photoURL')}>*/}
+                {/*  Photo URL <FontAwesomeIcon icon="sort" />*/}
+                {/*</th>*/}
+                {/*<th className="hand" onClick={sort('photoAuthor')}>*/}
+                {/*  Photo Author <FontAwesomeIcon icon="sort" />*/}
+                {/*</th>*/}
+                {/*<th className="hand" onClick={sort('poweredBy')}>*/}
+                {/*  Powered By <FontAwesomeIcon icon="sort" />*/}
+                {/*</th>*/}
+                {/*<th className="hand" onClick={sort('poweredByURL')}>*/}
+                {/*  Powered By URL <FontAwesomeIcon icon="sort" />*/}
+                {/*</th>*/}
+                {/*<th className="hand" onClick={sort('content')}>*/}
+                {/*  Content <FontAwesomeIcon icon="sort" />*/}
+                {/*</th>*/}
                 <th className="hand" onClick={sort('isHero')}>
                   Is Hero <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
-                  Author <FontAwesomeIcon icon="sort" />
-                </th>
+                {/*<th>*/}
+                {/*  Author <FontAwesomeIcon icon="sort" />*/}
+                {/*</th>*/}
                 <th />
               </tr>
             </thead>
@@ -134,18 +134,18 @@ export const Article = (props: IArticleProps) => {
                   <td>{article.title}</td>
                   <td>{article.tag}</td>
                   <td>{article.summary}</td>
-                  <td>{article.photoURL}</td>
-                  <td>{article.photoAuthor}</td>
-                  <td>{article.poweredBy}</td>
-                  <td>{article.poweredByURL}</td>
-                  <td>{article.content}</td>
-                  <td>{article.isHero ? 'true' : 'false'}</td>
-                  <td>{article.author ? article.author.id : ''}</td>
+                  {/*<td>{article.photoURL}</td>*/}
+                  {/*<td>{article.photoAuthor}</td>*/}
+                  {/*<td>{article.poweredBy}</td>*/}
+                  {/*<td>{article.poweredByURL}</td>*/}
+                  {/*<td>{article.content}</td>*/}
+                  <td>{article.hero ? 'true' : 'false'}</td>
+                  {/*<td>{article.author ? article.author.id : ''}</td>*/}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${article.id}`} color="info" size="sm">
-                        <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
-                      </Button>
+                      {/*<Button tag={Link} to={`${match.url}/${article.id}`} color="info" size="sm">*/}
+                      {/*  <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>*/}
+                      {/*</Button>*/}
                       <Button
                         tag={Link}
                         to={`${match.url}/${article.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}

@@ -77,12 +77,13 @@ const Header = (props: IHeaderProps) => {
                 ))}
                 <div style={{
                   paddingTop: '5px',
-                  marginLeft: '20px'
+                  marginLeft: '20px',
+                  display: 'flex'
                 }}>
                   {/*<Home />*/}
-                  {props.isAuthenticated && props.isAdmin && <EntitiesMenu />}
-                  {props.isAuthenticated && props.isAdmin && <AdminMenu showSwagger={props.isSwaggerEnabled} />}
                   <AccountMenu isAuthenticated={props.isAuthenticated} />
+                  {props.isAuthenticated && props.isAdmin && <EntitiesMenu />}
+                  {/*{props.isAuthenticated && props.isAdmin && <AdminMenu showSwagger={props.isSwaggerEnabled} />}*/}
                 </div>
               </Nav>
             </Collapse>
