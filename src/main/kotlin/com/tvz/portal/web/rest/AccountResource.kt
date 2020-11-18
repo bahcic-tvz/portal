@@ -53,7 +53,9 @@ class AccountResource(
             throw InvalidPasswordException()
         }
         val user = userService.registerUser(managedUserVM, managedUserVM.password!!)
-        mailService.sendActivationEmail(user)
+        user.activated = true
+        userRepository.save(user)
+//        mailService.sendActivationEmail(user)
     }
 
     /**

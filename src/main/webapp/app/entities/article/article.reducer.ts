@@ -144,6 +144,7 @@ export const createEntity: ICrudPutAction<IArticle> = entity => async dispatch =
 };
 
 export const updateEntity: ICrudPutAction<IArticle> = entity => async dispatch => {
+  console.log(entity);
   const result = await dispatch({
     type: ACTION_TYPES.UPDATE_ARTICLE,
     payload: axios.put(apiUrl, cleanEntity(entity)),

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button } from 'reactstrap';
 import { AvForm, AvInput } from 'availity-reactstrap-validation';
-import {getCommentsForArticle, postComment} from "app/entities/comment/comment.reducer";
+import { postComment } from "app/entities/comment/comment.reducer";
 import {IComment} from "app/shared/model/comment.model";
 import {convertDateTimeForArticle, getDayCroatian} from "app/shared/util/date-utils";
 
@@ -24,8 +24,6 @@ function invertHex(hex) {
   return (Number(`0x1${hex}`) ^ 0xFFFFFF).toString(16).substr(1).toUpperCase()
 }
 
-invertHex('00FF00'); // Returns FF00FF
-
 interface CommentsProp extends StateProps, DispatchProps {
   articleId: number
   comments: []
@@ -33,6 +31,7 @@ interface CommentsProp extends StateProps, DispatchProps {
 
 const Comments = (props: CommentsProp) => {
   const [commentValue, setCommentValue] = useState('')
+  const commentInvalid = commentValue !== null && commentValue.length >= 999
 
   const handleSubmit = (event, errors, { comment }) => {
     if(commentValue.length <= 0) return
@@ -42,6 +41,20 @@ const Comments = (props: CommentsProp) => {
     } as any)
     setCommentValue('')
   };
+
+  const getInitials = (comment: IComment) => {
+    const first = comment.author.firstName?.substr(0, 1)
+    const last = comment.author.lastName?.substr(0, 1)
+    if(first && last) return (first + last).toUpperCase()
+    return comment.author?.login.substr(0, 2).toUpperCase()
+  }
+
+  const getName = (comment: IComment) => {
+    const first = comment.author.firstName
+    const last = comment.author.lastName
+    if(first && last) return (first + ' ' + last)
+    return comment.author?.login
+  }
 
   return (
     <div>
@@ -65,15 +78,13 @@ const Comments = (props: CommentsProp) => {
                     color: invertHex(stringToColour(comment.author.email))
                   }}
                 >
-                  {comment.author.firstName.substr(0, 1)}
-                  {comment.author.lastName.substr(0, 1)}
+                  {getInitials(comment)}
                 </div>
               </Col>
               <Col xs="11">
                 <div className={"comment-cont-wrapper"}>
                   <div className={"full-name"}>
-                    {comment.author.firstName}{' '}
-                    {comment.author.lastName}
+                    {getName(comment)}
                   </div>
                   <div className={"comment-date-time"}>
                   <span style={{textTransform: 'capitalize'}}>
@@ -105,6 +116,11 @@ const Comments = (props: CommentsProp) => {
               value={commentValue}
               onChange={e => setCommentValue(e.target.value)}
             />
+            <div className={"log-in-comment"} style={{ color: 'red' }}>
+              <b>
+                {commentInvalid ? 'Maksimalna duljina komentara je 999 znakova!' : null}
+              </b>
+            </div>
             <div className={"log-in-comment"}>
               {props.isAuthenticated ? null : 'Prijavite se da bi komentirali!'}
             </div>
@@ -113,7 +129,7 @@ const Comments = (props: CommentsProp) => {
             <Button
               color="info"
               type="submit"
-              disabled={!props.isAuthenticated}
+              disabled={!props.isAuthenticated || commentInvalid}
               className={"sub-button"}
             >
               <b>Pošalji</b>

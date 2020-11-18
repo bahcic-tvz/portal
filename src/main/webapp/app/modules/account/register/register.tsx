@@ -47,7 +47,7 @@ export const RegisterPage = (props: IRegisterProps) => {
                   value: '^[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$|^[_.@A-Za-z0-9-]+$',
                   errorMessage: 'Your username is invalid.',
                 },
-                minLength: { value: 1, errorMessage: 'Your username is required to be at least 1 character.' },
+                minLength: { value: 5, errorMessage: 'Your username is required to be at least 5 character.' },
                 maxLength: { value: 50, errorMessage: 'Your username cannot be longer than 50 characters.' },
               }}
             />

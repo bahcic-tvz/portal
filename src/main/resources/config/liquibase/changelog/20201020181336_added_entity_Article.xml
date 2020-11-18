@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    
+
     <!--
         Added the entity Article.
     -->
@@ -27,7 +27,7 @@
             <column name="tag" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="summary" type="varchar(255)">
+            <column name="summary" type="varchar(500)">
                 <constraints nullable="true" />
             </column>
             <column name="photo_url" type="varchar(255)">
@@ -42,7 +42,7 @@
             <column name="powered_by_url" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="content" type="varchar(255)">
+            <column name="content" type="varchar(20000)">
                 <constraints nullable="true" />
             </column>
             <column name="is_hero" type="boolean">

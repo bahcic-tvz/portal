@@ -156,9 +156,9 @@ export const ArticleUpdate = (props: IArticleUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <Label id="contentLabel" for="article-content">
-                  Content
+                  Content (will render HTML)
                 </Label>
-                <AvField id="article-content" type="text" name="content" />
+                <AvInput id="article-content" type="textarea" name="content" style={{height: '350px'}} />
               </AvGroup>
               <AvGroup check>
                 <Label id="isHeroLabel">

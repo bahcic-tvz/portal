@@ -33,7 +33,8 @@ const Article = (props: ICategoryProp) => {
   const { article, category } = useParams()
   const articleId = article.split('-')[article.split('-').length - 1] as number
   const author = props.article.author
-  const authorName = author ? author.firstName + ' ' + author.lastName : null
+  let authorName = author ? author.firstName + ' ' + author.lastName : null
+  authorName = !authorName || authorName.trim().length <= 0 ? author?.login ?? 'Nepoznati Autor' : authorName
   const myRef = useRef(null)
   const executeScroll = () => {
     const y = myRef.current.getBoundingClientRect().top + window.pageYOffset - 100;
@@ -63,7 +64,7 @@ const Article = (props: ICategoryProp) => {
             <h1>{props.article.title}</h1>
             <span>Piše{' '}
               <span className={"author-name"}>
-                {authorName ?? "Nepoznati Autor"}
+                {authorName}
               </span>
             </span>{', '}
             <span>{getDayCroatian(props.article.posted)}</span>{', '}
@@ -107,8 +108,10 @@ const Article = (props: ICategoryProp) => {
                 }}
               />{' '}
             </div>
-            <div>
-              {props.article.content}
+            <div className={"inner-html-content-wrapper"}>
+              <div
+                dangerouslySetInnerHTML={{ __html: props.article.content }}
+              />
             </div>
             <div ref={myRef}>
               <Comments
@@ -118,14 +121,14 @@ const Article = (props: ICategoryProp) => {
             </div>
           </div>
         </Col>
-        <Col
-          lg={{ size: 6, offset: 2 }}
-          md={{ size: 10, offset: 1 }}
-          sm={{ size: 12, offset: 0 }}
-          className={"col-wrapper"}
-        >
-          Side
-        </Col>
+        {/*<Col*/}
+        {/*  lg={{ size: 6, offset: 2 }}*/}
+        {/*  md={{ size: 10, offset: 1 }}*/}
+        {/*  sm={{ size: 12, offset: 0 }}*/}
+        {/*  className={"col-wrapper"}*/}
+        {/*>*/}
+        {/*  Side*/}
+        {/*</Col>*/}
       </Row>
     </>
   )

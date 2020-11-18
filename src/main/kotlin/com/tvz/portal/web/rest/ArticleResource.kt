@@ -69,6 +69,7 @@ class ArticleResource(
         if (article.id == null) {
             throw BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull")
         }
+        article.comments = articleRepository.findById(article.id!!).get().comments
         val result = articleRepository.save(article)
         return ResponseEntity.ok()
             .headers(

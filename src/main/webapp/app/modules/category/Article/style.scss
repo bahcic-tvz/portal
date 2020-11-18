@@ -105,6 +105,18 @@ h1 {
   }
 }
 
+.inner-html-content-wrapper {
+  font-size: 19px;
+  margin-bottom: 50px;
+  flex-flow: row wrap;
+  justify-content: center;
+  iframe {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   h1 {
     font-size: 40px;
