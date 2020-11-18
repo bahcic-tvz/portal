@@ -45,6 +45,9 @@
         "name": "generator-jhipster-kotlin",
         "version": "1.10.0"
       }
-    ]
+    ],
+    "herokuAppName": "sata-23",
+    "herokuDeployType": "git",
+    "herokuJavaVersion": "13"
   }
 }
