@@ -107,44 +107,6 @@ const Article = (props: ICategoryProp) => {
             </div>
             <div>
               {props.article.content}
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
-              content
-              <br/>
             </div>
             <div ref={myRef}>
               <Comments

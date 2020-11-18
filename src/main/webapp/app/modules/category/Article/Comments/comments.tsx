@@ -46,6 +46,14 @@ const Comments = (props: CommentsProp) => {
   return (
     <div>
       <div>
+        <div className={"comments-header-wrapper"}>
+          <span className={"comments-header"} >
+            <span>Komentari</span>{' '}
+            <span className={"count"}>
+              {props.comments.length}
+            </span>
+          </span>
+        </div>
         {props.comments.map((comment: IComment) => (
           <div>
             <Row>
