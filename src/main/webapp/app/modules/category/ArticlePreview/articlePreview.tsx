@@ -53,7 +53,7 @@ const generateArticle = (index: number) => {
 export const ArticlePreview = ({ index, article }: Props) => {
   const { lg, md, sm, color, height } = generateArticle(index)
   const dashedTitle = article.title.toLowerCase().replace(/[\W_]+/g,"-")
-  const linkTo = `/category/news/${dashedTitle}-${article.id}`
+  const linkTo = `/category/${article.category.toLowerCase()}/${dashedTitle}-${article.id}`
   return (
     <Col lg={lg} md={md} sm={sm} style={{backgroundColor: 'transparent'}}>
       <Link to={linkTo} className="preview-link">
